@@ -7,12 +7,10 @@ function sayiTahminOyunu() {
   while (oyunaDevam) {
     let kalanTahmin = maxTahmin - tahminSayisi;
 
-    let tahmin = prompt(
-      `Tuttuğum sayıyı tahmin edebilir misin?\nKalan tahmin: ${kalanTahmin}`
-    );
+    let tahmin = prompt(`Tuttuğum sayıyı tahmin edebilir misin?`);
     if (tahmin === null) {
       alert(`Oyundan çıkılıyor. Tuttuğum sayı: ${hedefSayi} idi`);
-      oyunaDevam=false;
+      oyunaDevam = false;
       break;
     }
     tahmin = Number(tahmin);
@@ -22,35 +20,38 @@ function sayiTahminOyunu() {
     }
     tahminSayisi++;
     if (tahmin === hedefSayi) {
-      let yeniOyun=confirm(`Bravo ${tahminSayisi} kerede bildiniz!`);
-      
+      let yeniOyun = confirm(`Bravo ${tahminSayisi} kerede bildiniz!`);
+
       if (yeniOyun) {
-       
         hedefSayi = Math.floor(Math.random() * 100) + 1;
         tahminSayisi = 0;
       } else {
         alert("Oyundan çıkılıyor...");
-        oyunaDevam=false;
+        oyunaDevam = false;
+        break;
+      }
+    } else if (tahminSayisi >= maxTahmin) {
+      alert("Tahmin hakkınız bitmiştir.");
+      let yeniOyun = confirm("Yeni oyun oynamak ister misiniz?");
+
+      if (yeniOyun) {
+        hedefSayi = Math.floor(Math.random() * 100) + 1;
+        tahminSayisi = 0;
+      } else {
+        alert("Oyundan çıkılıyor...");
+        oyunaDevam = false;
         break;
       }
     } else if (tahmin < hedefSayi) {
-      alert(`Daha büyük bir sayı girmelisin!\nKalan hakkınız: ${kalanTahmin-1}`);
-    } else if (tahminSayisi >= maxTahmin) {
-      alert("Tahmin hakkınız bitmiştir. Yeni oyun oynamak ister misiniz?");
-      if (yeniOyun) {
-        hedefSayi = Math.floor(Math.random() * 100) + 1;
-        tahminSayisi = 0;
-      } else {
-        alert("Oyundan çıkılıyor...");
-        oyunaDevam=false;
-        break;
-      }
+      alert(
+        `Daha büyük bir sayı girmelisin!\nKalan hakkınız: ${kalanTahmin - 1}`
+      );
     } else {
       alert(
-        `Daha küçük bir sayı girmelisiniz.\nKalan hakkınız:${kalanTahmin-1}`
+        `Daha küçük bir sayı girmelisiniz.\nKalan hakkınız:${kalanTahmin - 1}`
       );
     }
   }
 }
-alert("Sayı tahmin oyununa hoş geldiniz.");
+alert("Sayı tahmin oyununa hoş geldiniz.\n10 hakkınız var.");
 sayiTahminOyunu();

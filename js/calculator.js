@@ -58,31 +58,40 @@
 let hesapla = true;
 function calculate(calculation) {
   while (hesapla) {
-    let calculation = prompt(`Hangi işlemi yapmak istiyorsunuz?`);
-    if (calculation === null) {
+    calculation = prompt(`Hangi işlemi yapmak istiyorsunuz?`);
+    if (hesapla === null && firstNumber === null && secondNumber === null) {
       alert(`calculator is switching off`);
       hesapla = false;
       break;
     }
     if (
       calculation != "+" &&
-      calculation != "-" &&
       calculation != "*" &&
+      calculation != "-" &&
       calculation != "/"
     ) {
-      alert(`Lütfen geçerli bir işlem giriniz!`);
+      alert(`Geçerli bir işlem giriniz.`);
+      continue;
     }
 
     let firstNumber = prompt(`ilk sayınızı giriniz: `);
-    firstNumber = Number(firstNumber);
 
-    if (firstNumber < 0 || isNaN(firstNumber)) {
+    if (
+      firstNumber < 0 ||
+      isNaN(Number(firstNumber)) ||
+      firstNumber.trim() === ""
+    ) {
       alert(`Lütfen geçerli bir sayı giriniz!`);
       continue;
     }
+    firstNumber = Number(firstNumber);
     let secondNumber = prompt(`İkinci sayınızı giriniz: `);
     secondNumber = Number(secondNumber);
-    if (secondNumber < 0 || isNaN(secondNumber)) {
+    if (
+      secondNumber < 0 ||
+      isNaN(Number(secondNumber)) ||
+      secondNumber.trim() === ""
+    ) {
       alert(`Lütfen geçerli bir sayı giriniz!`);
       continue;
     }
@@ -98,6 +107,10 @@ function calculate(calculation) {
         result = firstNumber * secondNumber;
         break;
       case "/":
+        if (secondNumber === 0) {
+          alert(`Bir sayı 0'a bölünemez.`);
+          break;
+        }
         result = firstNumber / secondNumber;
         break;
       default:
@@ -105,13 +118,11 @@ function calculate(calculation) {
     }
 
     alert(`Sonuç: ${result}`);
-    let yeniOyun=confirm(`Yeni hesaplama ister misiniz?`);
-    if(!yeniOyun){
+    let yeniOyun = confirm(`Yeni hesaplama ister misiniz?`);
+    if (!yeniOyun) {
       alert(`Calculator is switching off.`);
-      hesapla=false;
+      hesapla = false;
     }
-
-   
   }
 }
 

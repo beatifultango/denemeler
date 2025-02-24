@@ -1,0 +1,18 @@
+body{
+    text-align: center;
+}
+
+#myButton{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 3em;
+   padding:5px;
+   border:3px darkred solid;
+   border-radius: 10px;
+   background-color: rgb(93, 206, 18);
+   color:rgb(68, 45, 15)
+}
+.myLabels{
+    font-size: 3em;
+    font-family: fantasy;
+
+}
